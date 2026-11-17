@@ -6,9 +6,9 @@ class Accommodation {
     this.name = unNombre;
     this.cost = unCosto;
   }
-  
+
   set name(unNombre: string) {
-    if (typeof(unNombre) !== "string" || unNombre.trim() === "") {
+    if (typeof unNombre !== "string" || unNombre.trim() === "") {
       throw new Error("El nombre no puede ser vacio");
     }
     this._name = unNombre;

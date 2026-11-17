@@ -9,6 +9,7 @@ function createCity(): City {
     new Date("2023-05-01"),
     new Date("2023-05-04"),
     "Notas",
+    new Accommodation("Nombre", 100),
   );
 }
 
@@ -162,6 +163,8 @@ describe("Duration in days", () => {
       "TestCountry",
       new Date("2023-05-01"),
       new Date("2023-05-01"),
+      "Notas",
+      new Accommodation("Nombre", 100),
     );
     expect(singleDayCity.getDurationDays()).toBe(1);
   });
@@ -176,7 +179,7 @@ describe("Duration in days", () => {
 
 describe("Alojamiento en la ciudad", () => {
   let city: City;
-  let accommodation : Accommodation;
+  let accommodation: Accommodation;
   beforeEach(() => {
     city = createCity();
     accommodation = new Accommodation("Nombre", 100);
@@ -187,6 +190,6 @@ describe("Alojamiento en la ciudad", () => {
     expect(city.getAccommodation()).toEqual(accommodation);
   });
   test("Obtener un alojamiento no asignado", () => {
-    expect(() => (city.getAccommodation())).toThrow();
+    expect(() => city.getAccommodation()).toThrow();
   });
 });

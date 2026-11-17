@@ -6,7 +6,7 @@ class City {
   #dateFrom!: Date;
   #dateTo!: Date;
   #notes: string = "";
-  #accomodation? : Accommodation;
+  #accomodation!: Accommodation;
 
   constructor(
     cityName: unknown,
@@ -14,6 +14,7 @@ class City {
     dateFrom: unknown,
     dateTo: unknown,
     notes: unknown = "",
+    accomodation: Accommodation,
   ) {
     this.setName(cityName);
     this.setCountry(country);
@@ -21,17 +22,14 @@ class City {
     this.setDateFrom(dateFrom);
     this.setDateTo(dateTo);
     this.setNotes(notes);
+    this.addAccommodation(accomodation);
   }
 
-  addAccommodation(accommodation: Accommodation){
-    
+  addAccommodation(accommodation: Accommodation) {
     this.#accomodation = accommodation;
   }
 
-  getAccommodation() : Accommodation {
-    if(!this.#accomodation){
-      throw new Error("No hay un alojamiento asignado");
-    }
+  getAccommodation(): Accommodation {
     return this.#accomodation;
   }
 
