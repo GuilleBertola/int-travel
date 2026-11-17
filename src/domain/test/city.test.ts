@@ -1,5 +1,6 @@
 import { describe, beforeEach, test, expect } from "vitest";
 import City, { calculateDurationDays } from "../city.ts";
+import Accommodation from "../accommodation.ts";
 
 function createCity(): City {
   return new City(
@@ -75,8 +76,9 @@ describe("City dates", () => {
   });
 
   test("should throw error if a date is missing", () => {
-    expect(() => city.validateDatesOrder(null, new Date("2023-05-04")))
-      .toThrow("Both dateFrom and dateTo are required");
+    expect(() => city.validateDatesOrder(null, new Date("2023-05-04"))).toThrow(
+      "Both dateFrom and dateTo are required",
+    );
   });
 
   test("should throw error if a date is invalid", () => {
@@ -92,9 +94,9 @@ describe("City dates", () => {
   });
 
   test("should throw error if a date has an unsupported type", () => {
-    expect(() =>
-      city.validateDatesOrder({}, new Date("2023-05-04")),
-    ).toThrow("Invalid date format");
+    expect(() => city.validateDatesOrder({}, new Date("2023-05-04"))).toThrow(
+      "Invalid date format",
+    );
   });
 });
 
@@ -169,5 +171,22 @@ describe("Duration in days", () => {
     city.setDateTo(new Date("2023-05-01"));
 
     expect(city.getDurationDays()).toBe(0);
+  });
+});
+
+describe("Alojamiento en la ciudad", () => {
+  let city: City;
+  let accommodation : Accommodation;
+  beforeEach(() => {
+    city = createCity();
+    accommodation = new Accommodation("Nombre", 100);
+  });
+
+  test("Aniadir un alojamiento", () => {
+    city.addAccommodation(accommodation);
+    expect(city.getAccommodation()).toEqual(accommodation);
+  });
+  test("Obtener un alojamiento no asignado", () => {
+    expect(() => (city.getAccommodation())).toThrow();
   });
 });

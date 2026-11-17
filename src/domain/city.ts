@@ -1,9 +1,12 @@
+import type Accommodation from "./accommodation";
+
 class City {
   #cityName!: string;
   #country!: string;
   #dateFrom!: Date;
   #dateTo!: Date;
   #notes: string = "";
+  #accomodation? : Accommodation;
 
   constructor(
     cityName: unknown,
@@ -18,6 +21,18 @@ class City {
     this.setDateFrom(dateFrom);
     this.setDateTo(dateTo);
     this.setNotes(notes);
+  }
+
+  addAccommodation(accommodation: Accommodation){
+    
+    this.#accomodation = accommodation;
+  }
+
+  getAccommodation() : Accommodation {
+    if(!this.#accomodation){
+      throw new Error("No hay un alojamiento asignado");
+    }
+    return this.#accomodation;
   }
 
   getCountry(): string {
@@ -125,10 +140,7 @@ class City {
   }
 }
 
-export function calculateDurationDays(
-  dateFrom?: Date,
-  dateTo?: Date,
-): number {
+export function calculateDurationDays(dateFrom?: Date, dateTo?: Date): number {
   if (!dateFrom || !dateTo) return 0;
   const a = new Date(dateFrom);
   const b = new Date(dateTo);
@@ -139,4 +151,3 @@ export function calculateDurationDays(
 }
 
 export default City;
-
