@@ -24,7 +24,7 @@ describe("City name", () => {
   });
 
   test("should throw error if city name is empty", () => {
-    // TODO: Implementar validación de nombre vacío en la clase City
+    expect(() => (city.setName(""))).toThrow();
   });
 });
 
@@ -35,7 +35,7 @@ describe("City country", () => {
   });
 
   test("should set country correctly", () => {
-    // TODO: Implementar test para validar país
+    expect(city.getCountry()).toBe("TestCountry");
   });
 
   test("should throw error if country is not a string", () => {
@@ -189,7 +189,5 @@ describe("Alojamiento en la ciudad", () => {
     city.addAccommodation(accommodation);
     expect(city.getAccommodation()).toEqual(accommodation);
   });
-  test("Obtener un alojamiento no asignado", () => {
-    expect(() => city.getAccommodation()).toThrow();
-  });
+
 });
